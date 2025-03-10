@@ -6,17 +6,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import gui.controller.AngabenController;
+import gui.controller.EintragenController;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
+
 public class Write {
     private static File file;
 
-    public static void writeToFile(ArrayList<String> data, String filepath) {
+    public static void writeToFile() {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                for (String line : data) {
+                System.out.println(AngabenController.getData().length);
+                for (String line : AngabenController.getData()) {
+                    System.out.println("ASDDDD");
                     writer.write(line);
                     writer.newLine();
                 }
@@ -36,6 +41,7 @@ public class Write {
                     boolean fileCreated = selectedFile.createNewFile();
                     if (fileCreated){
                         file = selectedFile;
+                        writeToFile();
                         openNewScene();
                     }
                 } catch (IOException ex) {

@@ -30,12 +30,8 @@ public class EintragenController {
 
     //private Variablen
     public static ObservableList<String> choices = FXCollections.observableArrayList("Stab", "Kette", "Langpompfe", "Q-Tipp", "Schild", "DPK", "Einzel-kurzpopfe");
-    private static final String[] data = new String[3];
+    private static final ArrayList<String> zuege = new ArrayList<String>();
     private String embedUrl;
-
-    public static String[] getData(){
-        return data;
-    }
 
     @FXML
     public void initialize() {
@@ -55,21 +51,26 @@ public class EintragenController {
     void SearchYoutubeVideoButtonClicked(ActionEvent event) {
         WebEngine webEngine = webView.getEngine();
 
-        String videoId = "0pc9Uf3vFDU";
-        embedUrl = "https://www.youtube.com/embed/u_BJ4ew1YNw"+ "?autoplay=1";
-        webEngine.load(embedUrl);
+        String youtubeUrl = "https://www.youtube.com/watch?v=_UtgZjul_Mc&t"; // Replace with actual video ID
+
+        // Append parameters to request the highest quality available
+        youtubeUrl += "&vq=hd1080"; // You can use "hd1080" or "highres" to request higher quality
+
+        webEngine.load(youtubeUrl);
     }
 
     public void zugSelected(){
-        addValueToData(data, embedUrl);
-        addValueToData(data, pompfen1.getValue());
-        addValueToData(data, pompfen2.getValue());
-        addValueToData(data, pompfen4.getValue());
-        addValueToData(data, pompfen5.getValue());
-        Write.writeToFile(data, "");
+        addValueToData(15, pompfen1.getValue());
+        addValueToData(16, pompfen2.getValue());
+        addValueToData(17, pompfen4.getValue());
+        addValueToData(18, pompfen5.getValue());
+        Write.writeToFile();
     }
     private void addValueToData(int index, String value) {
         data[index] = (value != null ? value : "null");
+    }
+    private void addValueToZuege(int index, String value) {
+        zuege.add(value != null ? value : "null");
     }
 
 }

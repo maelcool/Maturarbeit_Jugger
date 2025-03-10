@@ -1,0 +1,36 @@
+Array:
+
+index:
+0 = yt-Link
+1 = Anzahl Züge
+2 = Eigenes Team
+3 = Gegnerisches Team
+4 = Turnier
+5 = Spieler*innen
+6 = ArrayList für jeden Zug
+
+ArrayList für jeden Zug logischerweise index 0 = erster Zug, 1 = zweiter Zug etc.
+
+Arraylist beinhaltet Array, dessen index beinhaltet:
+
+0 = Zugnummer
+1 = grün
+2 = erste Pompfe
+3 = zweite Pompfe
+4 = läufi
+5 = dritte Pompfe
+6 = vierte Pompfe
+7 = gewonnen erste Pompfe
+8 = gewonnen zweite Pompfe
+9 = gewonnen dritte Pompfe
+10 = gewonnen vierte Pompfe
+11 = Druckpunkt erste Pompfe
+12 = Druckpunkt zweite Pompfe
+13 = Druckpunkt dritte Pompfe
+14 = Druckpunkt vierte Pompfe
+15 = Pompfe erste Pompfe
+16 = Pompfe zweite Pompfe
+17 = Pompfe dritte Pompfe
+18 = Pompfe vierte Pompfe
+
+

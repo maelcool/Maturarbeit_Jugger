@@ -33,10 +33,10 @@
             </WebView>
             <VBox GridPane.rowIndex="1">
                <children>
-                      <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0">
+                      <HBox fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                           <children>
-                              <TextField prefHeight="25.0" prefWidth="314.0" promptText="Youtube-url eingeben" />
-                              <Button fx:id="SearchYoutubeVideoButton" mnemonicParsing="false" onAction="#SearchYoutubeVideoButtonClicked" text="Fertig" />
+                              <TextField fx:id="youtubeURLField" prefHeight="25.0" prefWidth="269.0" promptText="Youtube-url eingeben" />
+                              <Button fx:id="SearchYoutubeVideoButton" mnemonicParsing="false" onAction="#SearchYoutubeVideoButtonClicked" prefHeight="25.0" prefWidth="115.0" text="Video Laden" />
                           </children>
                       </HBox>
                   <HBox spacing="20.0">
@@ -61,16 +61,15 @@
             <VBox GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anzahl Züge" VBox.vgrow="ALWAYS" />
-                  <TextField />
+                  <TextField fx:id="zuege" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eigenes Team" />
-                  <TextField />
+                  <TextField fx:id="eigenesTeam" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gegner Team" />
-                  <TextField VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="gegenerischesTeam" VBox.vgrow="ALWAYS" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Turnier" />
                   <HBox>
                      <children>
-                        <TextField />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <TextField fx:id="turnier" prefHeight="25.0" prefWidth="240.0" />
                      </children>
                   </HBox>
                   <VBox>
@@ -78,11 +77,10 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler*innen" />
                         <HBox>
                            <children>
-                              <TextField promptText="Name" />
-                              <Button mnemonicParsing="false" text="Button" />
+                              <TextField fx:id="teamPlayers" onKeyReleased="#handleKeyReleased" prefHeight="25.0" prefWidth="235.0" promptText="Name" />
                            </children>
                         </HBox>
-                        <ListView prefHeight="230.0" prefWidth="330.0" />
+                        <ListView fx:id="listView" prefHeight="230.0" prefWidth="330.0" />
                      </children>
                   </VBox>
                </children>
