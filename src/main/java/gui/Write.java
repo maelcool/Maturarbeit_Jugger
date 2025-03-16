@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import gui.controller.AngabenController;
 import gui.controller.EintragenController;
@@ -16,14 +18,19 @@ import org.apache.commons.io.FilenameUtils;
 
 public class Write {
     private static File file;
+    public static String dataString;
+    public static ArrayList<String> dataArrayList;
+
 
     public static void writeToFile() {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                 System.out.println(AngabenController.getData().length);
                 for (String line : AngabenController.getData()) {
                     System.out.println("ASDDDD");
-                    writer.write(line);
-                    writer.newLine();
+                    if(line !=null) {
+                        writer.write(line);
+                        writer.newLine();
+                    }
                 }
                 System.out.println("File written successfully.");
             } catch (IOException e) {
@@ -56,8 +63,10 @@ public class Write {
     public static void openAFile(File selectedFile) throws Exception {
         file = selectedFile;
         if (!FilenameUtils.getExtension(selectedFile.getName()).equals(".jugger")){
-            String data = FileUtils.readFileToString(selectedFile);
-            System.out.println(data);
+            dataString = FileUtils.readFileToString(selectedFile);
+            Stream<String> linesFromString = dataString.lines();
+            dataArrayList = (ArrayList<String>) linesFromString.collect(Collectors.toList());
+            System.out.println(dataArrayList);
             openNewScene();
         }
     }

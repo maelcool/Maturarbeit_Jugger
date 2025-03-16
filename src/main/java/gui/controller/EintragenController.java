@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gui.StartGUI;
 import gui.Write;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,11 +13,20 @@ import javafx.scene.web.WebView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class EintragenController {
+    private static EintragenController instance;
+    public static EintragenController getInstance() {
+        return instance;
+    }
+
     //FXML Variablen
     @FXML
     private Button SearchYoutubeVideoButton;
+    @FXML
+    private ChoiceBox<Integer> zuegeAuswahl;
     @FXML
     private ChoiceBox<String> pompfen1;
     @FXML
@@ -26,12 +36,30 @@ public class EintragenController {
     @FXML
     private ChoiceBox<String> pompfen5;
     @FXML
+    private ChoiceBox<String> spieli1;
+    @FXML
+    private ChoiceBox<String> spieli2;
+    @FXML
+    private ChoiceBox<String> spieli3;
+    @FXML
+    private ChoiceBox<String> spieli4;
+    @FXML
     private WebView webView;
 
     //private Variablen
-    public static ObservableList<String> choices = FXCollections.observableArrayList("Stab", "Kette", "Langpompfe", "Q-Tipp", "Schild", "DPK", "Einzel-kurzpopfe");
+    private static ObservableList<String> choices = FXCollections.observableArrayList("Stab", "Kette", "Langpompfe", "Q-Tipp", "Schild", "DPK", "Einzel-kurzpopfe");
+
     private static final ArrayList<String> zuege = new ArrayList<String>();
-    private String embedUrl;
+    private static ArrayList<String> privateData;
+    private String youtubeURL;
+    private Integer anzahlZuege;
+    private String eigenesTeam;
+    private String gegenerischesTeam;
+    private String turnier;
+    private String[] spielerInnen;
+    private ObservableList<String> spielerInnenOptionen;
+
+
 
     @FXML
     public void initialize() {
@@ -39,14 +67,31 @@ public class EintragenController {
         pompfen2.setItems(FXCollections.observableArrayList(choices));
         pompfen4.setItems(FXCollections.observableArrayList(choices));
         pompfen5.setItems(FXCollections.observableArrayList(choices));
+        if(Write.dataArrayList != null){
+            privateData = Write.dataArrayList;
+        }
 
-        pompfen1.setOnAction(event -> {
-            String selected = pompfen1.getValue();
+        youtubeURL = privateData.get(0);
+        anzahlZuege = Integer.parseInt(privateData.get(1));
+        eigenesTeam = privateData.get(2);
+        gegenerischesTeam = privateData.get(3);
+        turnier = privateData.get(4);
+        spielerInnen = privateData.get(5).split("%&\\+");
+        spielerInnenOptionen = FXCollections.observableArrayList(spielerInnen);
+
+        spieli1.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+        spieli2.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+        spieli3.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+        spieli4.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+        zuegeAuswahl.setOnAction(event -> {
+            Integer selected = zuegeAuswahl.getValue();
             if (selected != null) {
                 zugSelected();
             }
         });
+        StartGUI.getCurrentStage().setTitle("Jugger: " + eigenesTeam +" vs " + gegenerischesTeam + " in " + turnier + ".");
     }
+    public
     @FXML
     void SearchYoutubeVideoButtonClicked(ActionEvent event) {
         WebEngine webEngine = webView.getEngine();
@@ -67,7 +112,7 @@ public class EintragenController {
         Write.writeToFile();
     }
     private void addValueToData(int index, String value) {
-        data[index] = (value != null ? value : "null");
+        AngabenController.setData(value != null ? value : "null", index);
     }
     private void addValueToZuege(int index, String value) {
         zuege.add(value != null ? value : "null");
