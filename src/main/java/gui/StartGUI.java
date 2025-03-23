@@ -26,8 +26,8 @@ public class StartGUI extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         instance = this;
-        System.out.println(StartGUI.class.getResource("/fxml-Files/Main.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(StartGUI.class.getResource("/fxml-Files/Angaben.fxml"));
+        System.out.println(StartGUI.class.getResource("/fxml-Files/FileOeffnen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartGUI.class.getResource("/fxml-Files/FileOeffnen.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -39,7 +39,7 @@ public class StartGUI extends Application{
     }
     public void switchToSecondScene(Stage stage) throws Exception {
         currentStage.close();
-        FXMLLoader fxmlLoader = new FXMLLoader(StartGUI.class.getResource("/fxml-Files/Eintragen.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartGUI.class.getResource("/fxml-Files/Main.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene); // Switch to the new scene
