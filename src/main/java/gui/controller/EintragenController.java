@@ -1,11 +1,13 @@
 package gui.controller;
 
+import com.sun.tools.javac.Main;
 import gui.StartGUI;
 import gui.Write;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.WebEngine;
@@ -16,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public class EintragenController {
+import static com.sun.tools.javac.Main.*;
+
+public class EintragenController{
     private static EintragenController instance;
     public static EintragenController getInstance() {
         return instance;
@@ -59,10 +63,12 @@ public class EintragenController {
     private String[] spielerInnen;
     private ObservableList<String> spielerInnenOptionen;
 
-
-
     @FXML
-    public void initialize() {
+    public void initialize(){
+        instance = this;
+    }
+    @FXML
+    public void readFile() {
         pompfen1.setItems(FXCollections.observableArrayList(choices));
         pompfen2.setItems(FXCollections.observableArrayList(choices));
         pompfen4.setItems(FXCollections.observableArrayList(choices));
@@ -71,25 +77,34 @@ public class EintragenController {
             privateData = Write.dataArrayList;
         }
 
-        youtubeURL = privateData.get(0);
-        anzahlZuege = Integer.parseInt(privateData.get(1));
-        eigenesTeam = privateData.get(2);
-        gegenerischesTeam = privateData.get(3);
-        turnier = privateData.get(4);
-        spielerInnen = privateData.get(5).split("%&\\+");
-        spielerInnenOptionen = FXCollections.observableArrayList(spielerInnen);
+        try {
+            youtubeURL = privateData.get(0);
+            anzahlZuege = Integer.parseInt(privateData.get(1));
+            eigenesTeam = privateData.get(2);
+            gegenerischesTeam = privateData.get(3);
+            turnier = privateData.get(4);
+            spielerInnen = privateData.get(5).split("%&\\+");
+            spielerInnenOptionen = FXCollections.observableArrayList(spielerInnen);
 
-        spieli1.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
-        spieli2.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
-        spieli3.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
-        spieli4.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
-        zuegeAuswahl.setOnAction(event -> {
-            Integer selected = zuegeAuswahl.getValue();
-            if (selected != null) {
-                zugSelected();
-            }
-        });
-        StartGUI.getCurrentStage().setTitle("Jugger: " + eigenesTeam +" vs " + gegenerischesTeam + " in " + turnier + ".");
+
+            spieli1.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+            spieli2.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+            spieli3.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+            spieli4.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
+            zuegeAuswahl.setOnAction(event -> {
+                Integer selected = zuegeAuswahl.getValue();
+                if (selected != null) {
+                    zugSelected();
+                }
+            });
+            StartGUI.getCurrentStage().setTitle("Jugger: " + eigenesTeam +" vs " + gegenerischesTeam + " in " + turnier + ".");
+        } catch (Exception e) {
+            System.out.println("ERROR: EintragenController 100, " + e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("File kann nicht gelesen werden");
+            alert.showAndWait();
+        }
     }
     public
     @FXML

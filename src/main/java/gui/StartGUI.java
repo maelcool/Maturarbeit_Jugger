@@ -1,5 +1,8 @@
 package gui;
+import gui.controller.AngabenController;
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 
 import java.util.Objects;
 
@@ -48,4 +52,6 @@ public class StartGUI extends Application{
         stage.setMinHeight(400);
         stage.show();
     }
+
+
 }

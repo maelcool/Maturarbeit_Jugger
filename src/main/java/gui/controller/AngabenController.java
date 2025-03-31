@@ -21,6 +21,10 @@ import java.util.ArrayList;
 
 
 public class AngabenController {
+    private static AngabenController instance;
+    public static AngabenController getInstance() {
+        return instance;
+    }
 
     @FXML
     private Button SearchYoutubeVideoButton;
@@ -49,6 +53,11 @@ public class AngabenController {
     public static void setData(String value, int index){
         dataArray[index] = value;
     }
+
+    @FXML
+    public void initialize(){
+        instance = this;
+    }
     @FXML
     void SearchYoutubeVideoButtonClicked(ActionEvent event) {
         WebEngine webEngine = webView.getEngine();
@@ -57,27 +66,8 @@ public class AngabenController {
         String embedUrl = "https://www.youtube.com/embed/u_BJ4ew1YNw"+ "?autoplay=1";
         webEngine.load(embedUrl);
     }
-    @FXML
-    void newFile(ActionEvent event) throws Exception {
-        if(!checkAllAnsweresAreGiven()){
-            return;
-        }
-        writeToTheDataArray();
-       Write.createANewFile();
-    }
-    @FXML
-    void openFIle(ActionEvent event) throws Exception {
-        if(!checkAllAnsweresAreGiven()){
-            return;
-        }
-        FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
-        if(selectedFile != null){
-            Write.openAFile(selectedFile);
-        }
-    }
 
-    private void writeToTheDataArray(){
+    public void writeToTheDataArray(){
         dataArray[0] = youtubeURLField.getText();
         dataArray[1] = zuege.getText();
         dataArray[2] = eigenesTeam.getText();
@@ -85,6 +75,7 @@ public class AngabenController {
         dataArray[4] = turnier.getText();
         dataArray[5] = String.join("%&+", teamMembers);
         dataArray[6] = null;
+        Write.writeToFile();
     }
 
     @FXML
@@ -97,7 +88,7 @@ public class AngabenController {
         }
     }
 
-    private boolean checkAllAnsweresAreGiven(){
+    public boolean checkAllAnsweresAreGiven(){
         boolean allAnswersGiven = true;
         if(youtubeURLField.getText() == null){
             youtubeURLField.setPromptText("Das ist ein Pflichtfeld");
