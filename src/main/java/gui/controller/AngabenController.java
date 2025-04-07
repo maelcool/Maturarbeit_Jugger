@@ -90,33 +90,33 @@ public class AngabenController {
 
     public boolean checkAllAnsweresAreGiven(){
         boolean allAnswersGiven = true;
-        if(youtubeURLField.getText() == null){
+        if(youtubeURLField.getText().isEmpty()){
             youtubeURLField.setPromptText("Das ist ein Pflichtfeld");
             allAnswersGiven = false;
             youtubeURLField.setStyle("-fx-background-color: #ff7373;");
             System.out.println("MISSING YOUTUBEURL");
         }
-        if(zuege.getText() == null){
+        if(zuege.getText().isEmpty()){
             zuege.setPromptText("Das ist ein Pflichtfeld");
             allAnswersGiven = false;
             System.out.println("MISSING ZUEGE");
         }
-        if(eigenesTeam.getText() == null){
+        if(eigenesTeam.getText().isEmpty()){
             eigenesTeam.setPromptText("Das ist ein Pflichtfeld");
             System.out.println("MISSING EIGENES TEAM");
             allAnswersGiven = false;
         }
-        if(gegenerischesTeam.getText() == null){
+        if(gegenerischesTeam.getText().isEmpty()){
             gegenerischesTeam.setPromptText("Das ist ein Pflichtfeld");
             System.out.println("MISSING GEGENER TEAM");
             allAnswersGiven = false;
         }
-        if(turnier.getText() == null){
+        if(turnier.getText().isEmpty()){
             turnier.setPromptText("Das ist ein Pflichtfeld");
             System.out.println("MISSING TURNIER");
             allAnswersGiven = false;
         }
-        if(String.join("%&+", teamMembers) == null){
+        if(String.join("%&+", teamMembers).isEmpty()){
             System.out.println("MISSING TEAMMITGLIEDER");
             allAnswersGiven = false;
         }
@@ -126,6 +126,8 @@ public class AngabenController {
             alert.setHeaderText("Please fill in all the required fields.");
             alert.showAndWait();
         }
+        System.out.println("Alle Antworten Ende: " + allAnswersGiven);
+        System.out.println(turnier.getText() + gegenerischesTeam.getText());
         return allAnswersGiven;
     }
 }
