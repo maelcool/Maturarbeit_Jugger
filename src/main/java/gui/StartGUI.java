@@ -35,7 +35,7 @@ public class StartGUI extends Application{
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Jugger - Angaben");
+        stage.setTitle("Jugger - File Öffnen");
         stage.setMinWidth(600);
         stage.setMinHeight(400);
         currentStage = stage;
@@ -47,11 +47,9 @@ public class StartGUI extends Application{
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene); // Switch to the new scene
-        stage.setTitle("Jugger - Eintragen");
+        stage.setTitle("Jugger");
         stage.setMinWidth(600);
         stage.setMinHeight(400);
         stage.show();
     }
-
-
 }
