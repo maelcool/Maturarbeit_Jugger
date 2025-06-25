@@ -30,7 +30,14 @@ public class MainController {
         else if (name.equals("Eintragen")){
             System.out.println("EINTRAGEN "  + name);
             if(AngabenController.getInstance().checkAllAnsweresAreGiven()){
-                AngabenController.getInstance().writeToTheDataArray();
+                try {
+                    AngabenController.getInstance().writeToGameAndToFile();
+                    System.out.println("ALL ANSWERS ARE GIVEN");
+                    EintragenController.getInstance().readFile();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 System.out.println("EVERYTHING SELECTED");
             }else {
                 System.out.println("NOT EVERYTHING SELECTED");

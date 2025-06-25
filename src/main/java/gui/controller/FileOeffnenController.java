@@ -1,6 +1,6 @@
 package gui.controller;
 
-import gui.Write;
+import gui.FileHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
@@ -8,17 +8,19 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 public class FileOeffnenController {
+    public static File selectedFile = null;
 
     @FXML
     void newFile(ActionEvent event) throws Exception {
-        Write.createANewFile();
+        FileHandler.createANewFile();
     }
     @FXML
     void openFIle(ActionEvent event) throws Exception {
         FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
+        selectedFile = fileChooser.showOpenDialog(null);
         if(selectedFile != null){
-            Write.openAFile(selectedFile);
+            FileHandler.openAFile(selectedFile);
         }
+        System.out.println("Selected file: " + selectedFile);
     }
 }

@@ -1,7 +1,6 @@
 package gui.storeageClasses;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
     private String youtubeLink;
@@ -9,8 +8,12 @@ public class Game {
     private String enemyTeam;
     private String tournament;
     private ArrayList<String> players;
+    private int howManyRounds;
     private ArrayList<Round> rounds;
 
+    public static Game getInstance() {
+        return new Game();
+    }
 
 
     // Getters und Setters für die Klasse:
@@ -46,7 +49,7 @@ public class Game {
         this.tournament = tournament;
     }
 
-    public List<String> getPlayers() {
+    public ArrayList<String> getPlayers() {
         return players;
     }
 
@@ -54,11 +57,18 @@ public class Game {
         this.players = players;
     }
 
-    public List<Round> getRounds() {
+    public ArrayList<Round> getRounds() {
         return rounds;
     }
 
     public void setRounds(ArrayList<Round> rounds) {
         this.rounds = rounds;
+    }
+
+    public int getHowManyRounds() {
+        return howManyRounds;
+    }
+    public void setHowManyRounds(int howManyRounds) {
+        this.howManyRounds = howManyRounds;
     }
 }

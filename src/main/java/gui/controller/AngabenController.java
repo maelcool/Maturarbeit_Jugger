@@ -1,8 +1,12 @@
 package gui.controller;
 
 import com.sun.tools.javac.Main;
+
+import gui.MainStorage;
 import gui.StartGUI;
-import gui.Write;
+import gui.FileHandler;
+import gui.storeageClasses.Game;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -29,7 +33,7 @@ public class AngabenController {
     @FXML
     private Button SearchYoutubeVideoButton;
     @FXML
-    private WebView webView; // This is the WebView injected from FXML
+    private WebView webView;
     @FXML
     private TextField youtubeURLField;
     @FXML
@@ -67,15 +71,18 @@ public class AngabenController {
         webEngine.load(embedUrl);
     }
 
-    public void writeToTheDataArray(){
-        dataArray[0] = youtubeURLField.getText();
-        dataArray[1] = zuege.getText();
-        dataArray[2] = eigenesTeam.getText();
-        dataArray[3] = gegenerischesTeam.getText();
-        dataArray[4] = turnier.getText();
-        dataArray[5] = String.join("%&+", teamMembers);
-        dataArray[6] = null;
-        Write.writeToFile();
+    public void writeToGameAndToFile() throws Exception{
+        System.out.println("writeToGameAndToFile called");
+        Game game = Game.getInstance();
+        game.setYoutubeLink(youtubeURLField.getText());
+        game.setHowManyRounds(Integer.parseInt(zuege.getText()));
+        game.setOwnTeam(eigenesTeam.getText());
+        game.setEnemyTeam(gegenerischesTeam.getText());
+        game.setTournament(turnier.getText());
+        game.setPlayers(teamMembers);
+        MainStorage.writeToFile(game);
+        System.out.println("Game data written to file.");
+        System.out.println("Youtube Link: " + game.getYoutubeLink());
     }
 
     @FXML

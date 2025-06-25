@@ -1,8 +1,11 @@
 package gui.controller;
 
+
 import com.sun.tools.javac.Main;
 import gui.StartGUI;
-import gui.Write;
+import gui.fileWriting.JsonFileReader;
+import gui.storeageClasses.Game;
+import gui.FileHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,21 +73,28 @@ public class EintragenController{
     }
     @FXML
     public void readFile() {
+        Game game = Game.getInstance();
         pompfen1.setItems(FXCollections.observableArrayList(choices));
         pompfen2.setItems(FXCollections.observableArrayList(choices));
         pompfen4.setItems(FXCollections.observableArrayList(choices));
         pompfen5.setItems(FXCollections.observableArrayList(choices));
-        if(Write.dataArrayList != null){
-            privateData = Write.dataArrayList;
+        try {
+            JsonFileReader.readJsonFromFile(FileOeffnenController.selectedFile, game);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
         try {
-            youtubeURL = privateData.get(0);
-            anzahlZuege = Integer.parseInt(privateData.get(1));
-            eigenesTeam = privateData.get(2);
-            gegenerischesTeam = privateData.get(3);
-            turnier = privateData.get(4);
-            spielerInnen = privateData.get(5).split("%&\\+");
+
+            youtubeURL = game.getYoutubeLink();
+            anzahlZuege = game.getHowManyRounds();
+            eigenesTeam = game.getOwnTeam();
+            gegenerischesTeam = game.getEnemyTeam();
+            turnier = game.getTournament();
+            System.out.println("Players: ");
+            spielerInnen = game.getPlayers().toArray(new String[0]);
+            System.out.println("After Players: ");
             spielerInnenOptionen = FXCollections.observableArrayList(spielerInnen);
 
 
@@ -99,7 +110,7 @@ public class EintragenController{
             });
             StartGUI.getCurrentStage().setTitle("Jugger: " + eigenesTeam +" vs " + gegenerischesTeam + " in " + turnier + ".");
         } catch (Exception e) {
-            System.out.println("ERROR: EintragenController 100, " + e);
+            System.out.println("ERROR: EintragenController, " + e);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("File kann nicht gelesen werden");
@@ -124,7 +135,7 @@ public class EintragenController{
         addValueToData(16, pompfen2.getValue());
         addValueToData(17, pompfen4.getValue());
         addValueToData(18, pompfen5.getValue());
-        Write.writeToFile();
+        FileHandler.writeToFile();
     }
     private void addValueToData(int index, String value) {
         AngabenController.setData(value != null ? value : "null", index);

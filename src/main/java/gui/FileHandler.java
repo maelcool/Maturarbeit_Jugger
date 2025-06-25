@@ -10,13 +10,14 @@ import java.util.stream.Stream;
 
 import gui.controller.AngabenController;
 import gui.controller.EintragenController;
+import gui.controller.FileOeffnenController;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 
-public class Write {
+public class FileHandler {
     private static File file;
     public static String dataString;
     public static ArrayList<String> dataArrayList;
@@ -41,6 +42,7 @@ public class Write {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Jugger Files", "*.jugger"));
         File selectedFile = fileChooser.showSaveDialog(StartGUI.getCurrentStage());
+    
 
         if (selectedFile != null) {
             if (!selectedFile.exists()) {
@@ -48,6 +50,7 @@ public class Write {
                     boolean fileCreated = selectedFile.createNewFile();
                     if (fileCreated){
                         file = selectedFile;
+                        FileOeffnenController.selectedFile = selectedFile;
                         writeToFile();
                         openNewScene();
                     }
