@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import gui.controller.FileOeffnenController;
+import gui.storeageClasses.Game;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +33,10 @@ public class JsonFileWriter {
         for (String item : value) {
            jsonNode.put(key, item);
         }
+    }
+
+    public static void writeTheGameToFile(Game game){
+        
     }
 
     public static void endFile() throws IOException {

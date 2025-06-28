@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -116,31 +115,28 @@
                         <Insets top="10.0" />
                      </GridPane.margin>
                   </VBox>
-                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <CheckBox fx:id="gewonnen1" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <CheckBox layoutX="200.0" layoutY="107.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <CheckBox layoutX="200.0" layoutY="177.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <CheckBox layoutX="200.0" layoutY="247.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <CheckBox layoutX="200.0" layoutY="317.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <CheckBox layoutX="200.0" layoutY="387.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="gewonnen2" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="gewonnen4" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="gewonnen5" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="druckpunkt2" layoutX="200.0" layoutY="107.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="druckpunkt1" layoutX="200.0" layoutY="177.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="druckpunkt4" layoutX="200.0" layoutY="317.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="druckpunkt5" layoutX="200.0" layoutY="387.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <ChoiceBox fx:id="pompfen1" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <ChoiceBox fx:id="pompfen2" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="pompfen4" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <ChoiceBox fx:id="pompfen5" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                   <CheckBox fx:id="gruenCheckBox" mnemonicParsing="false" text="Grün" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Button fx:id="SearchYoutubeVideoButton" mnemonicParsing="false" onAction="#SearchYoutubeVideoButtonClicked" text="PlayVideo" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Text layoutX="250.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gegnerische Pompfe" GridPane.columnIndex="4" />
-                  <ChoiceBox fx:id="pompfen11" layoutX="284.0" layoutY="103.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="pompfen111" layoutX="387.0" layoutY="103.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <ChoiceBox fx:id="pompfen1111" layoutX="387.0" layoutY="173.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                  <ChoiceBox fx:id="pompfen11111" layoutX="387.0" layoutY="313.0" prefWidth="142.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                  <ChoiceBox fx:id="gegenerPompfe1" layoutX="284.0" layoutY="103.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="gegenerPompfe2" layoutX="387.0" layoutY="103.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <ChoiceBox fx:id="gegenerPompfe3" layoutX="387.0" layoutY="173.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <ChoiceBox fx:id="gegenerPompfe4" layoutX="387.0" layoutY="313.0" prefWidth="142.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             </children>

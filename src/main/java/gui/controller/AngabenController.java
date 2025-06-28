@@ -66,23 +66,23 @@ public class AngabenController {
     void SearchYoutubeVideoButtonClicked(ActionEvent event) {
         WebEngine webEngine = webView.getEngine();
 
-        String videoId = "0pc9Uf3vFDU";
+        String videoId = youtubeURLField.getText();
         String embedUrl = "https://www.youtube.com/embed/u_BJ4ew1YNw"+ "?autoplay=1";
-        webEngine.load(embedUrl);
+        webEngine.load(videoId);
     }
 
     public void writeToGameAndToFile() throws Exception{
         System.out.println("writeToGameAndToFile called");
         Game game = Game.getInstance();
-        game.setYoutubeLink(youtubeURLField.getText());
-        game.setHowManyRounds(Integer.parseInt(zuege.getText()));
-        game.setOwnTeam(eigenesTeam.getText());
-        game.setEnemyTeam(gegenerischesTeam.getText());
-        game.setTournament(turnier.getText());
-        game.setPlayers(teamMembers);
+        game.youtubeLink = youtubeURLField.getText();
+        game.howManyRounds = Integer.parseInt(zuege.getText());
+        game.ownTeam = eigenesTeam.getText();
+        game.enemyTeam = gegenerischesTeam.getText();
+        game.tournament = turnier.getText();
+        game.players = teamMembers;
         MainStorage.writeToFile(game);
         System.out.println("Game data written to file.");
-        System.out.println("Youtube Link: " + game.getYoutubeLink());
+        System.out.println("Youtube Link: " + game.youtubeLink);
     }
 
     @FXML

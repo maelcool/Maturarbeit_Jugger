@@ -1,41 +1,23 @@
 package gui.storeageClasses;
 
 public class Fight {
-        private String position;
-        private boolean gewonnen;
-        private int druckpunkt;
-        private String pompfeTyp;
+        public int position;
+        public String name;
+        public boolean gewonnen;
+        public boolean druckpunkt;
+        public String pompfeTyp;
+        public String gegnerPompfeTyp;
 
-        // Getters und Setters für Klasse:
-        public String getPosition() {
-                return position;
-        }
-
-        public void setPosition(String position) {
+        public Fight(int position, String name, Boolean gewonnen, boolean druckpunkt, String pompfeTyp, String gegnerPompfeTyp){
                 this.position = position;
-        }
-
-        public boolean isGewonnen() {
-                return gewonnen;
-        }
-
-        public void setGewonnen(boolean gewonnen) {
+                this.name = name;
                 this.gewonnen = gewonnen;
-        }
-
-        public int getDruckpunkt() {
-                return druckpunkt;
-        }
-
-        public void setDruckpunkt(int druckpunkt) {
                 this.druckpunkt = druckpunkt;
-        }
-
-        public String getPompfeTyp() {
-                return pompfeTyp;
-        }
-
-        public void setPompfeTyp(String pompfeTyp) {
                 this.pompfeTyp = pompfeTyp;
+                this.gegnerPompfeTyp = gegnerPompfeTyp;
+        }
+        public Fight(int position, String name){
+                this.position = position;
+                this.name = name;
         }
 }
