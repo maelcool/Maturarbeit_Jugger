@@ -6,4 +6,6 @@ public class Round {
     public int numberOfRound;
     public boolean gruen;
     public List<Fight> fights;
+
+    public Round() {};
 }

@@ -14,6 +14,7 @@ public class MainStorage {
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode jsonNode = objectMapper.createObjectNode();
 
+        System.out.print("Main Storage called");
         //Game Data
         JsonFileWriter.writeStringAndStringToFile("youtubeLink", game.youtubeLink);
         JsonFileWriter.writeStringAndStringToFile("ownTeam", game.ownTeam);

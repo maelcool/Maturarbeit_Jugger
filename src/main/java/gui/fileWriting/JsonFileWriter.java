@@ -14,11 +14,7 @@ public class JsonFileWriter {
     private static ObjectMapper objectMapper = new ObjectMapper();
     public static ObjectNode jsonNode = objectMapper.createObjectNode();
 
-    public static void main(String[] args) throws IOException {
-
-        jsonNode.put("country", "India");
-        objectMapper.writeValue(new File("mydata.json"), jsonNode);
-    }
+    
 
     public static void writeStringAndStringToFile(String key, String value) throws IOException {
         jsonNode.put(key, value);   
@@ -35,8 +31,16 @@ public class JsonFileWriter {
         }
     }
 
-    public static void writeTheGameToFile(Game game){
-        
+    public static void writeTheGameToFile(Game game) throws IOException{
+        writeStringAndStringToFile("youtubeLink", game.youtubeLink);
+        writeStringAndStringToFile("ownTeam", game.ownTeam);
+        writeStringAndStringToFile("enemyTeam", game.enemyTeam);
+        writeStringAndStringToFile("tournament", game.tournament);
+        writeStringAndStringToFile("players", game.players.toString());
+        writeStringAndStringToFile("rounds", game.rounds != null ? game.rounds.toString() : "[]");
+        writeStringAndIntToFile("howManyRounds", game.howManyRounds);
+        JsonFileWriter.endFile();
+
     }
 
     public static void endFile() throws IOException {

@@ -8,6 +8,8 @@ import gui.storeageClasses.Fight;
 import gui.storeageClasses.Game;
 import gui.storeageClasses.Round;
 import gui.FileHandler;
+import gui.MainStorage;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,9 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import static com.sun.tools.javac.Main.*;
 
 public class EintragenController{
     private static EintragenController instance;
@@ -136,8 +135,12 @@ public class EintragenController{
             spielerInnen = game.players.toArray(new String[0]);
             spielerInnenOptionen = FXCollections.observableArrayList(spielerInnen);
             ObservableList<Integer> zuegeOptionenIntegers = FXCollections.observableArrayList(IntStream.rangeClosed(1, anzahlZuege).boxed().toList());
+            zuegeAuswahl.getSelectionModel()
+            .selectedItemProperty()
+            .addListener((obs, oldVal, newVal) -> {
+            zugSelected(newVal);;});
 
-
+                
             spieli1.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
             spieli2.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
             spieli3.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
@@ -182,7 +185,12 @@ public class EintragenController{
         System.out.print(fights);
         newRound.fights = fights;
         game.rounds.add(newRound);
-        //TODO: Have it write the Game to the File
+        try {
+            JsonFileWriter.writeTheGameToFile(game);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     private void addValueToData(int index, String value) {
         AngabenController.setData(value != null ? value : "null", index);
