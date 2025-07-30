@@ -1,4 +1,6 @@
 package gui.fileWriting;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -32,12 +34,26 @@ public class JsonFileWriter {
     }
 
     public static void writeTheGameToFile(Game game) throws IOException{
+        System.out.print("WriteTheGame was called");
+
         writeStringAndStringToFile("youtubeLink", game.youtubeLink);
         writeStringAndStringToFile("ownTeam", game.ownTeam);
         writeStringAndStringToFile("enemyTeam", game.enemyTeam);
         writeStringAndStringToFile("tournament", game.tournament);
         writeStringAndStringToFile("players", game.players.toString());
-        writeStringAndStringToFile("rounds", game.rounds != null ? game.rounds.toString() : "[]");
+        //writeStringAndStringToFile("rounds", game.rounds != null ? game.rounds.toString() : "[]");
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String roundsTemp = mapper.writeValueAsString(game.rounds);
+            writeStringAndStringToFile("rounds", roundsTemp);
+        } catch (JsonGenerationException e) {
+        e.printStackTrace();
+        } catch (JsonMappingException e) {
+        e.printStackTrace();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+    
         writeStringAndIntToFile("howManyRounds", game.howManyRounds);
         JsonFileWriter.endFile();
 

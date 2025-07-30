@@ -100,7 +100,7 @@ public class EintragenController{
     private String turnier;
     private String[] spielerInnen;
     private ObservableList<String> spielerInnenOptionen;
-     Game game = Game.getInstance();
+    Game game = Game.getInstance();
 
 
     @FXML
@@ -138,9 +138,12 @@ public class EintragenController{
             zuegeAuswahl.getSelectionModel()
             .selectedItemProperty()
             .addListener((obs, oldVal, newVal) -> {
-            zugSelected(newVal);;});
+                if(newVal != null){
+                    zugSelected(newVal);
+                };
+            });
+            zuegeAuswahl.setValue(1);
 
-                
             spieli1.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
             spieli2.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
             spieli3.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
@@ -173,8 +176,11 @@ public class EintragenController{
     }
 
     public void zugSelected(int numberOfRound){
+        if (numberOfRound == 1){
+            return;            
+        }
         Round newRound = new Round();
-        newRound.numberOfRound = numberOfRound;
+        newRound.numberOfRound = numberOfRound -1;
         newRound.gruen = gruenCheckBox.isSelected();
         List<Fight> fights = new ArrayList<Fight>();
         fights.add(new Fight(1, spieli1.getValue(), gewonnen1.isSelected(), druckpunkt1.isSelected(), pompfen1.getValue() ,gegenerPompfe1.getValue()));

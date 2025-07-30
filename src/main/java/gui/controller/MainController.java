@@ -44,6 +44,9 @@ public class MainController {
                 setTab(angaben);
             };
         }
+        else if(name.equals("Auswertung")){
+            AuswertungController.getInstance().readFile();
+        }
 
 
         else {
