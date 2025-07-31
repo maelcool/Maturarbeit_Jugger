@@ -1,0 +1,48 @@
+{
+  "youtubeLink" : "https://www.youtube.com/watch?v=bV85_gIrHTc",
+  "ownTeam" : "Fondue Front",
+  "enemyTeam" : "Jugger Basilisken Basel",
+  "tournament" : "Zur Goldenen Pompfe",
+  "players" : [ "Erste Person", "Zweite Person", "Dritte Person", "Vierte Person", "Fünfte Person" ],
+  "rounds" : [ {
+    "numberOfRound" : 1,
+    "gruen" : true,
+    "fights" : [ {
+      "position" : 1,
+      "name" : "Erste Person",
+      "gewonnen" : true,
+      "druckpunkt" : false,
+      "pompfeTyp" : "Stab",
+      "gegnerPompfeTyp" : "Langpompfe"
+    }, {
+      "position" : 2,
+      "name" : "Zweite Person",
+      "gewonnen" : false,
+      "druckpunkt" : true,
+      "pompfeTyp" : "Langpompfe",
+      "gegnerPompfeTyp" : "Kette"
+    }, {
+      "position" : 3,
+      "name" : "Dritte Person",
+      "gewonnen" : false,
+      "druckpunkt" : false,
+      "pompfeTyp" : null,
+      "gegnerPompfeTyp" : null
+    }, {
+      "position" : 4,
+      "name" : "Vierte Person",
+      "gewonnen" : true,
+      "druckpunkt" : true,
+      "pompfeTyp" : "Kette",
+      "gegnerPompfeTyp" : "Einzel-kurzpopfe"
+    }, {
+      "position" : 5,
+      "name" : "Fünfte Person",
+      "gewonnen" : false,
+      "druckpunkt" : false,
+      "pompfeTyp" : "Q-Tipp",
+      "gegnerPompfeTyp" : "DPK"
+    } ]
+  } ],
+  "howManyRounds" : 1
+}
