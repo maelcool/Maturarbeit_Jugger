@@ -15,6 +15,7 @@ public class Game {
         return new Game();
     }
 
+    public Game() {};
 
     
 }

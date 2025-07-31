@@ -1,3 +1,4 @@
+package Main;
 import gui.StartGUI;
 import javafx.application.Application;
 
@@ -7,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 public class Main {
     //private static final Logger eLogger = LogManager.getLogger(Main.class); // Error Logger
 
-    private static final org.apache.logging.log4j.Logger Logger = LogManager.getLogger("InfoLogger");
+    public static final org.apache.logging.log4j.Logger Logger = LogManager.getLogger("InfoLogger");
     private final String[] argsForMainMethod = new String[0];
     public String[] getArgsForMainMethod(){
         return argsForMainMethod;

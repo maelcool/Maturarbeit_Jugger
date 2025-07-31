@@ -2,8 +2,8 @@ package gui.controller;
 
 import com.sun.tools.javac.Main;
 
-import gui.MainStorage;
 import gui.StartGUI;
+import gui.fileWriting.JsonFileWriter;
 import gui.FileHandler;
 import gui.storeageClasses.Game;
 
@@ -80,9 +80,7 @@ public class AngabenController {
         game.enemyTeam = gegenerischesTeam.getText();
         game.tournament = turnier.getText();
         game.players = teamMembers;
-        MainStorage.writeToFile(game);
-        System.out.println("Game data written to file.");
-        System.out.println("Youtube Link: " + game.youtubeLink);
+        JsonFileWriter.writeTheGameToFile(game);
     }
 
     @FXML

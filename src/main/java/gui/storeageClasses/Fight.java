@@ -20,4 +20,6 @@ public class Fight {
                 this.position = position;
                 this.name = name;
         }
+
+        public Fight() {};
 }

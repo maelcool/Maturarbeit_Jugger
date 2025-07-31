@@ -29,8 +29,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Text fx:id="GruenProzent" strokeType="OUTSIDE" strokeWidth="0.0" text="Wieviel Prozent Grün: " GridPane.columnIndex="1" />
+                              <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text fx:id="gruenProzent" strokeType="OUTSIDE" strokeWidth="0.0" text="Wieviel Prozent Grün: " GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                      </children>

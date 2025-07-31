@@ -1,6 +1,5 @@
 package gui.controller;
 
-import com.sun.tools.javac.Main;
 import gui.StartGUI;
 import gui.fileWriting.JsonFileReader;
 import gui.fileWriting.JsonFileWriter;
@@ -8,7 +7,6 @@ import gui.storeageClasses.Fight;
 import gui.storeageClasses.Game;
 import gui.storeageClasses.Round;
 import gui.FileHandler;
-import gui.MainStorage;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import Main.Main;
 
 public class EintragenController{
     private static EintragenController instance;
@@ -135,14 +135,7 @@ public class EintragenController{
             spielerInnen = game.players.toArray(new String[0]);
             spielerInnenOptionen = FXCollections.observableArrayList(spielerInnen);
             ObservableList<Integer> zuegeOptionenIntegers = FXCollections.observableArrayList(IntStream.rangeClosed(1, anzahlZuege).boxed().toList());
-            zuegeAuswahl.getSelectionModel()
-            .selectedItemProperty()
-            .addListener((obs, oldVal, newVal) -> {
-                if(newVal != null){
-                    zugSelected(newVal);
-                };
-            });
-            zuegeAuswahl.setValue(1);
+            zuegeAuswahl.setValue(0);
 
             spieli1.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
             spieli2.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
@@ -151,11 +144,13 @@ public class EintragenController{
             lauefi.setItems(FXCollections.observableArrayList(spielerInnenOptionen));
             zuegeAuswahl.setItems(zuegeOptionenIntegers);
             zuegeAuswahl.setOnAction(event -> {
-                Integer selected = zuegeAuswahl.getValue();
-                if (selected != null) {
+            Integer selected = zuegeAuswahl.getValue();
+            if (selected != null && selected != 0) {  
                     zugSelected(selected);
                 }
             });
+            zuegeAuswahl.setValue(0);  
+
             try{
                 WebEngine webEngine = webView.getEngine();
                 youtubeURL += "&vq=highres"; // You can use "hd1080" or "highres" to request higher quality
@@ -176,11 +171,14 @@ public class EintragenController{
     }
 
     public void zugSelected(int numberOfRound){
-        if (numberOfRound == 1){
-            return;            
+        for(Round round : game.rounds){
+            if (round.numberOfRound == numberOfRound){
+                Main.Logger.info("Round " + numberOfRound + " already exists. Skipping addition.");
+                return;
+            }
         }
         Round newRound = new Round();
-        newRound.numberOfRound = numberOfRound -1;
+        newRound.numberOfRound = numberOfRound;
         newRound.gruen = gruenCheckBox.isSelected();
         List<Fight> fights = new ArrayList<Fight>();
         fights.add(new Fight(1, spieli1.getValue(), gewonnen1.isSelected(), druckpunkt1.isSelected(), pompfen1.getValue() ,gegenerPompfe1.getValue()));
@@ -192,17 +190,11 @@ public class EintragenController{
         newRound.fights = fights;
         game.rounds.add(newRound);
         try {
+            Main.Logger.info("Written to the Game" + game.rounds.toString());
             JsonFileWriter.writeTheGameToFile(game);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    private void addValueToData(int index, String value) {
-        AngabenController.setData(value != null ? value : "null", index);
-    }
-    private void addValueToZuege(int index, String value) {
-        zuege.add(value != null ? value : "null");
-    }
-
 }

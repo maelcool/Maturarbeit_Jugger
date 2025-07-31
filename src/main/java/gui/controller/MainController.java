@@ -1,5 +1,6 @@
 package gui.controller;
 
+import gui.storeageClasses.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -45,7 +46,9 @@ public class MainController {
             };
         }
         else if(name.equals("Auswertung")){
+            System.out.print("SWITCHED" + Game.getInstance().rounds);
             AuswertungController.getInstance().readFile();
+            System.out.print("SWITCHED" + Game.getInstance().rounds);
         }
 
 
