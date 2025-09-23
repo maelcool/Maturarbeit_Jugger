@@ -1,0 +1,31 @@
+@startuml
+' Classes
+class JsonFileWriter {
+  -objectMapper : ObjectMapper
+  +writeStringAndStringToFile(key : String, value : String, jsonNode : ObjectNode) : void
+  +etc() : void
+  +writeTheGameToFile(game : Game) : void
+  +endFile(jsonNode : ObjectNode) : void
+}
+
+class Game
+class ObjectNode
+class JsonNode
+class FileOeffnenController {
+  +selectedFile : File
+}
+class Main {
+  +Logger
+}
+class etc
+
+' Dependencies
+JsonFileWriter --> ObjectNode : uses
+JsonFileWriter --> Game : uses
+JsonFileWriter --> FileOeffnenController : uses
+JsonFileWriter --> Main : uses
+JsonFileWriter --> etc : uses
+
+' Inheritance
+ObjectNode --|> JsonNode
+@enduml

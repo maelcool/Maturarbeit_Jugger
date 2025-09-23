@@ -1,0 +1,21 @@
+@startuml
+class JsonFileReader {
+  -objectMapper : ObjectMapper
+
+  +readJsonFromFile(file : File, game : Game) : void
+  -transformJsonNodeToArrayListRounds(jsonNode : JsonNode) : ArrayList<Round>
+  -transformJsonNodeToArrayListString(jsonNode : JsonNode) : ArrayList<String>
+}
+
+
+' Classes
+class Game
+class JsonNode
+class File
+
+JsonFileReader --> Game : uses
+JsonFileReader --> JsonNode : uses
+JsonFileReader --> File : uses
+
+@enduml
+

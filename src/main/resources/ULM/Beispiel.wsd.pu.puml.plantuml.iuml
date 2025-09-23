@@ -1,0 +1,21 @@
+@startuml
+class Beispiel {
+  +privatesAttribut : String
+  -privatesAttribut : int
+
+  +öffentlicheOperation(Zahl : int) : void
+  -privateOperation() : int
+}
+
+' Vererbung
+class ChildBeispiel
+Beispiel --|> ChildBeispiel
+
+' Klassen
+class VerwendeteKlasse
+
+Beispiel --> VerwendeteKlasse : uses
+
+@enduml
+
+

@@ -27,7 +27,7 @@ public class JsonFileWriter {
         jsonNode.put(key, value);
     }
     public static void writeStringAndArrayListToFile(String key, ArrayList value, ObjectNode jsonNode) throws IOException {
-        jsonNode.set(key, objectMapper.valueToTree(value)); //Before it was just putting Strings instead of Json Object
+        jsonNode.set(key, objectMapper.valueToTree(value));
     }
 
     public static void writeTheGameToFile(Game game) throws IOException{
