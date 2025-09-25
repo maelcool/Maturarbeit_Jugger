@@ -28,5 +28,5 @@ Nach dem Start des JARs werden Sie gefragt, ob Sie:
 Nachdem Sie Ihre Wahl getroffen haben, wird ein **neues Fenster** geöffnet, das aus **drei Tabs** besteht:
 
 1. Das erste Tab sieht folgendermasen aus:
-![Erster Tab](https://postimg.cc/mhBWmqFt)
+![Erster Tab]([Maturarbeit_Jugger\src\main\resources\images\Jugger-Program-Auswertung.png](https://postimg.cc/mhBWmqFt))
 
