@@ -1,0 +1,21 @@
+@startuml
+class AngabenController {
+  -static instance : AngabenController
+  -teamMembers : ArrayList<String>
+  -etc : etc
+
+  +writeToGameAndToFile() : void
+  +handleKeyReleased(event : KeyEvent) : void
+  +checkAllAnsweresAreGiven() : boolean
+  +etc() : etc
+}
+
+class ActionEvent
+class Game
+class JsonFileWriter
+
+' Abhängigkeiten
+AngabenController --> ActionEvent : uses
+AngabenController --> Game : uses
+AngabenController --> JsonFileWriter : uses
+@enduml

@@ -41,7 +41,7 @@ public class JsonFileReader {
 
     private static ArrayList<Round> transformJsonNodeToArrayListRounds(JsonNode jsonNode){
         if (jsonNode == null || jsonNode.isNull()) {
-            Main.Main.Logger.error("Rounds is null, in JsonFileReader");
+            main.Main.Logger.error("Rounds is null, in JsonFileReader");
             return new ArrayList<>();
         }
 
@@ -56,7 +56,7 @@ public class JsonFileReader {
 
     private static ArrayList<String> transformJsonNodeToArrayListString(JsonNode jsonNode){
         if (jsonNode == null || jsonNode.isNull()) {
-            Main.Main.Logger.error("Players is null, in JsonFileReader");
+            main.Main.Logger.error("Players is null, in JsonFileReader");
             return new ArrayList<>();
         }
 

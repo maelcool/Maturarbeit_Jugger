@@ -1,0 +1,19 @@
+@startuml
+class EintragenController {
+  -static instance : EintragenController
+  -etc : etc
+
+  +readFile() : void
+  +zugSelected(numberOfRound : int) : void
+  +etc() : etc
+}
+
+' Classes
+class ETC
+
+' Verknüpfungen
+EintragenController --> Game : uses
+EintragenController --> JsonFileReader : uses
+EintragenController --> JsonFileWriter : uses
+EintragenController --> ETC : uses
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+
+class Fight {
+  +position : int
+  +name : String
+  +gewonnen : boolean
+  +druckpunkt : boolean
+  +pompfeTyp : String
+  +gegnerPompfeTyp : String
+
+  +Fight()
+  +etc() : etc
+}
+
+class Round {
+  +numberOfRound : int
+  +gruen : boolean
+  +fights : List<Fight>
+
+  +Round()
+}
+
+class Game {
+  +etc : etc
+
+  +getInstance() : Game
+  +Game()
+}
+
+class tableViewStorage {
+  +name : String
+  +playPercentage : String
+  +winPercentage : String
+
+  +etc() : etc
+}
+
+' Dependecies
+Game --> Round : contains
+Round --> Fight : contains
+AuswertungController --> tableViewStorage : uses
+
+@enduml

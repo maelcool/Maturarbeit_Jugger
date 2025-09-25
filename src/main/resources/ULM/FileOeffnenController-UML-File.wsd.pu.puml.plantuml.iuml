@@ -1,0 +1,20 @@
+@startuml
+class FileOeffnenController {
+  +static selectedFile : File
+
+  +newFile(event : ActionEvent) : void
+  +openFile(event : ActionEvent) : void
+}
+
+' Classes
+class File
+class FileHandler
+class FileChooser
+class ActionEvent
+
+' Dependencies
+FileOeffnenController --> FileHandler : uses
+FileOeffnenController --> File : uses
+FileOeffnenController --> FileChooser : uses
+FileOeffnenController --> ActionEvent : uses
+@enduml

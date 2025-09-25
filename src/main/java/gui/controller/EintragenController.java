@@ -18,6 +18,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import main.Main;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -25,8 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import Main.Main;
 
 public class EintragenController{
     private static EintragenController instance;

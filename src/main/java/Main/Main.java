@@ -1,4 +1,4 @@
-package Main;
+package main;
 import gui.StartGUI;
 import javafx.application.Application;
 

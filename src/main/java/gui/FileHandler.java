@@ -51,7 +51,6 @@ public class FileHandler {
                     if (fileCreated){
                         file = selectedFile;
                         FileOeffnenController.selectedFile = selectedFile;
-                        writeToFile();
                         openNewScene();
                     }
                 } catch (IOException ex) {

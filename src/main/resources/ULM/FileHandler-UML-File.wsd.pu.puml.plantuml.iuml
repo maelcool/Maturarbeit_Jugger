@@ -1,0 +1,16 @@
+@startuml
+class FileHandler {
+  -file : File
+  -etc : etc
+
+  +createANewFile() : void
+  +openAFile(selectedFile : File) : void
+  +etc() : etc
+}
+
+' Dependencies
+FileHandler --> File : uses
+FileHandler --> FileChooser : uses
+FileHandler --> FileOeffnenController : uses
+FileHandler --> ETC: uses
+@endum

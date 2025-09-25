@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Main.Main;
 import gui.fileWriting.JsonFileReader;
 import gui.storeageClasses.Fight;
 import gui.storeageClasses.Game;
@@ -19,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import main.Main;
 
 public class AuswertungController {
 

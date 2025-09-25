@@ -1,0 +1,17 @@
+@startuml
+class AuswertungController {
+  -gruenProzent : Text
+  -etc : etc
+
+  +readFile() : void
+  -createANewTab(name : String) : Tab
+  -getGreen() : double
+  -etc() : etc
+}
+
+AuswertungController --> Game : uses
+AuswertungController --> Round : uses
+AuswertungController --> Fight : uses
+AuswertungController --> tableViewStorage : uses
+AuswertungController --> etc : uses
+@enduml

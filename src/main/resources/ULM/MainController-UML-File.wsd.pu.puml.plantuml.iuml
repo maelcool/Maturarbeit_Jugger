@@ -1,0 +1,24 @@
+@startuml
+class MainController {
+  -etc : etc
+
+  +angabenAusgewaehlt() : void
+  +eintragenAusgewaehlt() : void
+  +auswertungAusgewaehlt() : void
+  +setTab(tab : Tab) : void
+}
+
+'Classes
+class AngabenController
+class EintragenController
+class AuswertungController
+class Game
+class ETC
+
+' Dependencies
+MainController --> AngabenController : uses
+MainController --> EintragenController : uses
+MainController --> AuswertungController : uses
+MainController --> Game : uses
+MainController --> ETC : uses
+@enduml

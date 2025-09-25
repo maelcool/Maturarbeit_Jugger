@@ -1,0 +1,24 @@
+@startuml
+class StartGUI {
+  -static instance : StartGUI
+  -static currentStage : Stage
+
+  +getInstance() : StartGUI
+  +getCurrentStage() : Stage
+  +start(stage : Stage) : void
+  +switchToSecondScene(stage : Stage) : void
+}
+
+' Classes
+class Stage
+class Scene
+class Parent
+class FXMLLoader
+
+
+' Dependencies
+StartGUI --> Stage : uses
+StartGUI --> Scene : uses
+StartGUI --> Parent : uses
+StartGUI --> FXMLLoader : uses
+@enduml
