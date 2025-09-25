@@ -44,7 +44,7 @@ In diesem Tab können alle relevanten Informationen für ein Spiel eingegeben we
 ---
 
 ###  Zugdaten (Zweiter Tab)
-![Zweiter Tab](https://postimg.cc/mhBWmqFt)
+![Zweiter Tab](src/main/resources/images/Jugger-Program-Eintragen.png)
 
 Hier werden die Informationen für jeden Zug eingetragen:
 
@@ -58,7 +58,7 @@ Hier werden die Informationen für jeden Zug eingetragen:
 ---
 
 ### Auswertung (Dritter Tab)
-![Dritter Tab](https://postimg.cc/mhBWmqFt)
+![Dritter Tab](src/main/resources/images/Jugger-Program-Auswertung.png)
 
 In diesem Tab werden die Daten ausgewertet und automatisch berechnet:
 
