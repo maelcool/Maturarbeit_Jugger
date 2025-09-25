@@ -1,12 +1,7 @@
 package gui.controller;
 
-import com.sun.tools.javac.Main;
-
-import gui.StartGUI;
 import gui.fileWriting.JsonFileWriter;
-import gui.FileHandler;
 import gui.storeageClasses.Game;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,10 +12,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -47,7 +38,7 @@ public class AngabenController {
     @FXML
     private TextField teamPlayers;
     @FXML
-    private ListView listView;
+    private ListView<String> listView;
 
     private ArrayList<String> teamMembers = new ArrayList<String>();
     private static final String[] dataArray = new String[7];
@@ -65,12 +56,16 @@ public class AngabenController {
     @FXML
     void SearchYoutubeVideoButtonClicked(ActionEvent event) {
         WebEngine webEngine = webView.getEngine();
-
         String videoId = youtubeURLField.getText();
-        String embedUrl = "https://www.youtube.com/embed/u_BJ4ew1YNw"+ "?autoplay=1";
         webEngine.load(videoId);
     }
 
+
+    /**
+     * Gets all Text from UI-Elements and stores them into Game.java.
+     * Then writes the whole Game to the File.
+     * @throws Exception
+     */
     public void writeToGameAndToFile() throws Exception{
         System.out.println("writeToGameAndToFile called");
         Game game = Game.getInstance();
@@ -83,6 +78,10 @@ public class AngabenController {
         JsonFileWriter.writeTheGameToFile(game);
     }
 
+    /**
+     * If Enter is presed, the text from the Players Textfield is entered as a teammember.
+     * @param event
+     */
     @FXML
     private void handleKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -93,6 +92,11 @@ public class AngabenController {
         }
     }
 
+    /**
+     * Checks if there is a link, Zuege, ownTeam, enemyTeam, tournemnet and some player names.
+     * If not, an Error Alert is shown and the Tab can't be switched.
+     * @return true or false
+     */
     public boolean checkAllAnsweresAreGiven(){
         boolean allAnswersGiven = true;
         if(youtubeURLField.getText().isEmpty()){

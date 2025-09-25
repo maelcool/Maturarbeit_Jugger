@@ -6,24 +6,17 @@ import gui.fileWriting.JsonFileWriter;
 import gui.storeageClasses.Fight;
 import gui.storeageClasses.Game;
 import gui.storeageClasses.Round;
-import gui.FileHandler;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import main.Main;
-
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -88,10 +81,7 @@ public class EintragenController{
     private WebView webView;
 
     //private Variablen
-    private static ObservableList<String> choices = FXCollections.observableArrayList("Stab", "Kette", "Langpompfe", "Q-Tipp", "Schild", "DPK", "Einzel-kurzpopfe");
-
-    private static final ArrayList<String> zuege = new ArrayList<String>();
-    private static ArrayList<String> privateData;
+    private static ObservableList<String> choices = FXCollections.observableArrayList("Stab", "Kette", "Langpompfe", "Q-Tipp", "Schild", "DPK", "Einzel-kurzpompfe");
     private String youtubeURL;
     private Integer anzahlZuege;
     private String eigenesTeam;
@@ -106,6 +96,12 @@ public class EintragenController{
     public void initialize(){
         instance = this;
     }
+
+    /**
+    * <p>This method sets up the Entries in for all Choice-Boxes as well as the Titel of the Stage.
+    * If an Error occurs, it displays an Error Alert. 
+    * </p>
+    */
     @FXML
     public void readFile() {
        
@@ -120,7 +116,7 @@ public class EintragenController{
         try {
             JsonFileReader.readJsonFromFile(FileOeffnenController.selectedFile, game);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            Main.Logger.error(e);
             e.printStackTrace();
         }
 
@@ -169,6 +165,13 @@ public class EintragenController{
         }
     }
 
+    /**
+     * Gets all Data from the UI-Elements and stores them into the Game.java Class.
+     * Then tries to write to the File.
+     * Has an OnAction, whenever a new Choice within Choicebox is made, this gets triggered.
+     * @param numberOfRound the number of the round
+     */
+
     public void zugSelected(int numberOfRound){
         for(Round round : game.rounds){
             if (round.numberOfRound == numberOfRound){
@@ -192,7 +195,7 @@ public class EintragenController{
             Main.Logger.info("Written to the Game" + game.rounds.toString());
             JsonFileWriter.writeTheGameToFile(game);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+            Main.Logger.error(e);
             e.printStackTrace();
         }
     }

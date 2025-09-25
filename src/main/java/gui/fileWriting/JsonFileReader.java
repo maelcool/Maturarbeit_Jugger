@@ -17,7 +17,13 @@ public class JsonFileReader {
     static ObjectMapper objectMapper = new ObjectMapper();
     
 
-
+    /**
+    * Reads a JSON file and fills the given Game object with the Information.
+    * Reads youtube link, teams, tournament, players, rounds and number of rounds.
+    * @param file the JSON file to read from
+    * @param game the Game object to fill
+    * @throws IOException if reading the file fails
+    */
     public static void readJsonFromFile(File file, Game game) throws IOException {
         System.out.println("Reading JSON from file: " + file.getAbsolutePath());
         
@@ -27,9 +33,7 @@ public class JsonFileReader {
         game.ownTeam = jsonNode.get("ownTeam").asText();
         game.enemyTeam = jsonNode.get("enemyTeam").asText();
         game.tournament = jsonNode.get("tournament").asText();
-        //TODO: Verify the Text that it is compatible
         ArrayList<String> playrArrayList = transformJsonNodeToArrayListString(jsonNode.get("players"));
-        //TODO: Verify the Text that it is compatible 
         game.players = playrArrayList;
         ArrayList<Round> roundList = transformJsonNodeToArrayListRounds(jsonNode.get("rounds"));
         game.rounds = roundList;

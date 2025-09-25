@@ -2,7 +2,7 @@ package gui.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import gui.fileWriting.JsonFileReader;
 import gui.storeageClasses.Fight;
@@ -43,6 +43,11 @@ public class AuswertungController {
         instance = this;
     }
     
+    /**
+    * Reads the Game from the JSON file.
+    * Then sets up the Tabs for each player with their stats and fills the main TableView.
+    * Also calculates and shows the percentage of rounds where green team won.
+    */
     @FXML
     public void readFile() {
         addColoumnsToTableViewPlayPercentageName(tableView);
@@ -64,10 +69,12 @@ public class AuswertungController {
         setAllEntriesForFirstTableView(tableViewList);
     }
 
-    //_______________________________________________________________________//
-
-
+    //_____________________________Setting Entries__________________________________________//
     
+    /**
+    * Fills the Team TableView with all players and how much they played in percentage.
+    * @param tableViewList should be an empty array that is the size of all players
+    */
     private void setAllEntriesForFirstTableView(tableViewStorage[] tableViewList){
         int counter = 0;
         for(int i = 0; i < game.players.size(); i++){
@@ -82,12 +89,18 @@ public class AuswertungController {
         }
     }
 
+
+    /**
+    * Fills a TableView with the stats of a single player, play percentage and win percentage.
+    * @param tableView the TableView to fill
+    * @param playerName the name of the player
+    */
      private void setEntryForSinglePlayerTableView(TableView<tableViewStorage> tableView, String playerName) {
         tableViewStorage entry = new tableViewStorage();
         entry.name = playerName;
         double playPercentageNumber = 100 * (getRoundsForPlayer(playerName, game) / (double) game.howManyRounds);
         entry.playPercentage = String.format("%.2f%%", playPercentageNumber);
-        double winPercentageNumber = 100 * getFightPercentageForPlayer(playerName, game); // already a ratio
+        double winPercentageNumber = 100 * getFightPercentageForPlayer(playerName, game);
         entry.winPercentage = String.format("%.2f%%", winPercentageNumber);
 
         tableView.getItems().add(entry);
@@ -95,8 +108,7 @@ public class AuswertungController {
 
 
 
-    //___________________________________________________//
-
+    //____________________Adding Coloumns_______________________________//
 
 
     private void addColoumnsToTableViewPlayPercentageName(TableView<tableViewStorage> tableViewNew){
@@ -106,10 +118,10 @@ public class AuswertungController {
         TableColumn<tableViewStorage, String> playPercentCol = new TableColumn<>("Play Percentage");
         playPercentCol.setCellValueFactory(new PropertyValueFactory<>("playPercentage"));
 
-        tableViewNew.getColumns().addAll(nameCol, playPercentCol);
+        tableViewNew.getColumns().addAll(
+            Arrays.asList(nameCol, playPercentCol)
+        );
     }
-
-
 
     private void addColoumnsToTableViewPlayAndWinPercentageName(TableView<tableViewStorage> tableViewNew){
         TableColumn<tableViewStorage, String> nameCol = new TableColumn<>("Name");
@@ -121,12 +133,20 @@ public class AuswertungController {
         TableColumn<tableViewStorage, String> playPercentCol = new TableColumn<>("Play Percentage");
         playPercentCol.setCellValueFactory(new PropertyValueFactory<>("playPercentage"));
 
-        tableViewNew.getColumns().addAll(nameCol, winPercentCol, playPercentCol);
+        tableViewNew.getColumns().addAll(
+            Arrays.asList(nameCol, winPercentCol, playPercentCol)
+        );
+
     }
 
 
-    //______________________________________________________//
+    //______________________Creating Tabs________________________________//
 
+    /**
+    * Creates a new Tab for a player, fills it with a TableView showing their stats.
+    * @param name player name
+    * @return the Tab with all the player's info
+    */
     private Tab createANewTab(String name){
         System.out.print("Create A New Tab Called");
         AnchorPane anchorPane = new AnchorPane();
@@ -155,7 +175,11 @@ public class AuswertungController {
 
 
 
-    //__________________________________________________________________//
+    //_________________________Calculations_________________________________//
+    /**
+    * Counts how many rounds the team has gotten green and returns it as a decimal percentage.
+    * @return green percentage (0.0 - 1.0) or 100000 if the sizes of the rounds don't match
+    */
     private double getGreen(){
         if (game.rounds.size() < game.howManyRounds) {
             Main.Logger.warn("roundList is empty in getGreen()");
@@ -168,11 +192,16 @@ public class AuswertungController {
                 greenCounter++;
             }
         }
-        Main.Logger.info("WIviel Grün: " + greenCounter);
+        Main.Logger.info("Wieviel Grün: " + greenCounter);
         double percentOfGreen = (double) greenCounter / game.howManyRounds;
         return percentOfGreen;
     }
-
+    /**
+    * Counts how many rounds a player played.
+    * @param playerName name of the player
+    * @param game the Game object containing rounds and fights
+    * @return number of rounds the player participated in or 
+    */
     private int getRoundsForPlayer(String playerName, Game game) {
         int result = 0;
 
@@ -181,7 +210,7 @@ public class AuswertungController {
                 if (fight.name != null && fight.name.equals(playerName)) {
                     Main.Logger.info("Player " + playerName + " participated in round " + round.numberOfRound);
                     result++;
-                    break; // one fight is enough to confirm participation in the round
+                    break;
                 }
             }
         }
@@ -204,7 +233,7 @@ public class AuswertungController {
             }
         }
 
-        if (allFights == 0) return 0.0;  // Avoid division by zero
+        if (allFights == 0) return 0.0; 
 
         return (double) howManyWins / allFights;
     }

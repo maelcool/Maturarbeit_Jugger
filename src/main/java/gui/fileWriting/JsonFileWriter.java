@@ -1,14 +1,10 @@
 package gui.fileWriting;
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import gui.controller.FileOeffnenController;
 import gui.storeageClasses.Game;
 import main.Main;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,13 +22,21 @@ public class JsonFileWriter {
     public static void writeStringAndBooleanToFile(String key, boolean value, ObjectNode jsonNode) throws IOException {
         jsonNode.put(key, value);
     }
-    public static void writeStringAndArrayListToFile(String key, ArrayList value, ObjectNode jsonNode) throws IOException {
+    public static <T> void writeStringAndArrayListToFile(String key, ArrayList<T> value, ObjectNode jsonNode) throws IOException {
         jsonNode.set(key, objectMapper.valueToTree(value));
     }
 
+
+    /**
+    * Writes the whole Game object into the JSON file.
+    * Handles merging in existing rounds if the current game has none.
+    * Writes teams, players, tournament, youtube link, rounds and number of rounds.
+    * @param game the Game object to write
+    * @throws IOException if writing fails
+    */
     public static void writeTheGameToFile(Game game) throws IOException{
         ObjectNode jsonNode = objectMapper.createObjectNode();
-        jsonNode.removeAll();
+        jsonNode.removeAll(); //Essential so that the Rounds aren't stacked upon each other
         Main.Logger.info("Removed all from JsonNode");
 
         Main.Logger.info("WriteTheGame was called");
@@ -59,12 +63,11 @@ public class JsonFileWriter {
 
         writeStringAndArrayListToFile("players", game.players, jsonNode);
 
-        //writeStringAndStringToFile("rounds", game.rounds != null ? game.rounds.toString() : "[]");
         try {
             writeStringAndArrayListToFile("rounds", game.rounds, jsonNode);
             Main.Logger.info("Rounds: " + game.rounds);
         } catch (IOException e) {
-            //TODO: Make a better Exception handling
+            Main.Logger.error(e);
             e.printStackTrace();
         }
 
@@ -73,7 +76,11 @@ public class JsonFileWriter {
         JsonFileWriter.endFile(jsonNode);
 
     }
-
+    /** 
+    * Writes the ObjectNode to the file with pretty printing.
+    * @param jsonNode the ObjectNode to save
+    * @throws IOException if writing fails
+    */
     public static void endFile(ObjectNode jsonNode) throws IOException {
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(FileOeffnenController.selectedFile, jsonNode);
     }

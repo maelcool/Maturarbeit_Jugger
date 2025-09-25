@@ -1,15 +1,12 @@
 package gui;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import gui.controller.AngabenController;
-import gui.controller.EintragenController;
 import gui.controller.FileOeffnenController;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -18,26 +15,16 @@ import org.apache.commons.io.FilenameUtils;
 
 
 public class FileHandler {
-    private static File file;
+    private static File file; //It is used
     public static String dataString;
     public static ArrayList<String> dataArrayList;
 
-
-    public static void writeToFile() {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-                System.out.println(AngabenController.getData().length);
-                for (String line : AngabenController.getData()) {
-                    System.out.println("ASDDDD");
-                    if(line !=null) {
-                        writer.write(line);
-                        writer.newLine();
-                    }
-                }
-                System.out.println("File written successfully.");
-            } catch (IOException e) {
-                System.err.println("An error occurred while writing to the file: " + e.getMessage());
-            }
-    }
+    /**
+    * Opens a FileChooser so the user can create a new .jugger file.
+    * If the file doesn’t exist, it creates it and sets it as the current file.
+    * Then opens the next scene in the GUI.
+    * @throws Exception if creating the file or opening the scene fails
+    */
     public static void createANewFile() throws Exception {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Jugger Files", "*.jugger"));
@@ -65,7 +52,7 @@ public class FileHandler {
     public static void openAFile(File selectedFile) throws Exception {
         file = selectedFile;
         if (!FilenameUtils.getExtension(selectedFile.getName()).equals(".jugger")){
-            dataString = FileUtils.readFileToString(selectedFile);
+            dataString = FileUtils.readFileToString(selectedFile, StandardCharsets.UTF_8);
             Stream<String> linesFromString = dataString.lines();
             dataArrayList = (ArrayList<String>) linesFromString.collect(Collectors.toList());
             System.out.println(dataArrayList);

@@ -4,6 +4,7 @@ import gui.storeageClasses.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import main.Main;
 
 public class MainController {
     @FXML
@@ -17,6 +18,13 @@ public class MainController {
     public void angabenAusgewaehlt(){
         System.out.println("ANGABEN  ");
     }
+
+    /**
+    * Called when the user switches to the"Eintragen" tab.
+    * First checks if all required fields in "Angaben" are filled.
+    * If yes, writes the data to the Game and file, then reads the UI for Eintragen tab.
+    * If not, goes back to the "Angaben" tab.
+    */
     public void eintragenAusgewaehlt(){
             if(AngabenController.getInstance().checkAllAnsweresAreGiven()){
                 try {
@@ -24,7 +32,7 @@ public class MainController {
                     System.out.println("ALL ANSWERS ARE GIVEN");
                     EintragenController.getInstance().readFile();
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
+                    Main.Logger.error(e);
                     e.printStackTrace();
                 }
                 System.out.println("EVERYTHING SELECTED");
@@ -33,6 +41,11 @@ public class MainController {
                 setTab(angaben);
             };
     }
+
+    /**
+    * Called when the "Auswertung" tab is selected.
+    * Reads the Game data and sets up the player stats and tabs.
+    */
     public void auswertungAusgewaehlt(){
         System.out.print("SWITCHED" + Game.getInstance().rounds);
             AuswertungController.getInstance().readFile();
