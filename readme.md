@@ -67,7 +67,7 @@ In diesem Tab werden die Daten ausgewertet und automatisch berechnet:
 
 
 ## Lizenz
-[MIT License](Maturarbeit_Jugger/blob/master/LICENSE)
+[MIT License](/LICENSE)
 
 
 Copyright (c) 2025 Mael Pittet
