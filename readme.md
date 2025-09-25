@@ -30,7 +30,7 @@ Nachdem Sie Ihre Wahl getroffen haben, öffnet sich ein **neues Fenster**, das a
 ---
 
 ### Spielinformationen (Erster Tab)
-![Erster Tab](https://imgur.com/a/ouV2DZ5)
+![Erster Tab](src/main/resources/images/jugger-Programm-Angaben.png)
 
 In diesem Tab können alle relevanten Informationen für ein Spiel eingegeben werden:
 
