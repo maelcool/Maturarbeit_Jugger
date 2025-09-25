@@ -64,3 +64,12 @@ In diesem Tab werden die Daten ausgewertet und automatisch berechnet:
 
 - **Prozentualer Anteil an Grün für das Team**  
 - **Für jede Person ein eigener Tab, indem die Gewinnrate und Spielzeit berechnet wird**
+
+
+## Lizenz
+[MIT License](LICENSE.md)
+
+
+Copyright (c) 2025 Mael Pittet
+
+
